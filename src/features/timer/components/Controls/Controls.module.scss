@@ -8,9 +8,7 @@
     list-style: none;
 }
 
-.PlayButton {
-    @include button-reset;
-    
+.PlayButton {    
     display: flex;
     justify-content: center;
     align-items: center;
