@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {  useDispatch, useSelector } from 'react-redux';
+import Countdown from './components/Countdown';
 import { selectIsExpired, selectSeconds } from './store/selectors';
 import { setSeconds } from './store/timerSlice';
 
@@ -28,12 +29,11 @@ const Timer = () => {
 	}, []);
 
 	return (
-		<section>
-			<h1>Interval Timer</h1>
-			<p>{seconds} seconds</p>
+		<div>
+			<Countdown seconds={seconds}/>
 			<button onClick={() => dispatch(setSeconds(5))}>+5 sec</button>
 			<button onClick={() => startTimer()}>Start</button>
-		</section>
+		</div>
 	);
 };
 
