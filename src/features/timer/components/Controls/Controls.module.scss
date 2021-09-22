@@ -5,4 +5,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
+    & > li + li {
+        margin-left: 0.5rem;
+    }
 }
