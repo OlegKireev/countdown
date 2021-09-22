@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setSeconds } from '../../store/timerSlice';
 import styles from './Controls.module.scss';
 import { ReactComponent as PlayPauseIcon } from '../../../../assets/img/icons/play-and-pause-button.svg';
+import Button from '../../../../components/Button';
 
 const propTypes = {
 	onTimerClick: PropTypes.func,
@@ -15,10 +16,10 @@ const Controls = ({onTimerClick}) => {
 	return (
 		<ul className={styles.Controls}>
 			<li>
-				<button onClick={() => dispatch(setSeconds(5))}>+5 sec</button>
+				<Button onClick={() => dispatch(setSeconds(5))}>+5</Button>
 			</li>
 			<li>
-				<button className={styles.PlayButton} onClick={() => onTimerClick()}><PlayPauseIcon /></button>
+				<Button onClick={() => onTimerClick()}><PlayPauseIcon /></Button>
 			</li>
 		</ul>
 	);
