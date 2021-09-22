@@ -1,2 +1,19 @@
+@import './theme/include.scss';
+
+$app-background-color: $color-black;
+$app-color: $color-white;
+
 .App {
+    width: 100vw;
+    height: 100vh;
+    color: $app-color;
+    background-color: $app-background-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Container {
+        width: 320px;
+        max-height: 568px;
+    }
 }
