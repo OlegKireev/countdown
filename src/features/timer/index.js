@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {  useDispatch, useSelector } from 'react-redux';
 import Countdown from './components/Countdown';
+import Controls from './components/Controls';
 import { selectIsExpired, selectSeconds } from './store/selectors';
 import { setSeconds } from './store/timerSlice';
-
 
 const Timer = () => {
 	const seconds = useSelector(selectSeconds);
@@ -36,8 +36,7 @@ const Timer = () => {
 	return (
 		<div>
 			<Countdown seconds={seconds}/>
-			<button onClick={() => dispatch(setSeconds(5))}>+5 sec</button>
-			<button onClick={() => onTimerClick()}>Start / Pause</button>
+			<Controls onTimerClick={onTimerClick} />
 		</div>
 	);
 };
