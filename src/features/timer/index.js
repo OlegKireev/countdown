@@ -12,8 +12,10 @@ const Timer = () => {
 	const dispatch = useDispatch();
 	const [intervalId, setIntervalId] = useState(null);
 
+	const isCountdowning = intervalId && !isExpired;
+
 	const onTimerClick = () => {
-		if (intervalId && !isExpired) {
+		if (isCountdowning) {
 			clearInterval(intervalId);
 			setIntervalId(null);
 		} else {
