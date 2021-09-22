@@ -12,10 +12,15 @@ const Timer = () => {
 	const dispatch = useDispatch();
 	const [intervalId, setIntervalId] = useState(null);
 
-	const startTimer = () => {
-		setIntervalId(setInterval(() => {
-			dispatch(setSeconds(-1));
-		}, 1000));
+	const onTimerClick = () => {
+		if (intervalId && !isExpired) {
+			clearInterval(intervalId);
+			setIntervalId(null);
+		} else {
+			setIntervalId(setInterval(() => {
+				dispatch(setSeconds(-1));
+			}, 1000));
+		}
 	};
 
 	if (isExpired) {
@@ -32,7 +37,7 @@ const Timer = () => {
 		<div>
 			<Countdown seconds={seconds}/>
 			<button onClick={() => dispatch(setSeconds(5))}>+5 sec</button>
-			<button onClick={() => startTimer()}>Start</button>
+			<button onClick={() => onTimerClick()}>Start / Pause</button>
 		</div>
 	);
 };
