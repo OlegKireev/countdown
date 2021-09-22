@@ -34,10 +34,10 @@ const Timer = () => {
 	}, []);
 
 	return (
-		<div>
+		<>
 			<Countdown seconds={seconds}/>
 			<Controls onTimerClick={onTimerClick} />
-		</div>
+		</>
 	);
 };
 
