@@ -17,3 +17,16 @@ body {
 img {
   max-width: 100%;
 }
+
+button {
+  appearance: none;
+  background: transparent;
+  border: none;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
