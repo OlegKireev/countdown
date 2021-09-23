@@ -16,10 +16,16 @@ export const timerSlice = createSlice({
 				isExpired: action.payload <= 0,
 			};
 		},
+		stepTimer: (state) => {
+			return {
+				seconds: state.seconds - 1,
+				isExpired: state.seconds  <= 1,
+			};
+		}
 	},
 });
 
-export const {setSeconds, setIntervalInstance} = timerSlice.actions;
+export const {setSeconds, stepTimer} = timerSlice.actions;
 
 // export const startTimer = () => dispatch => {
 // 	const interval = setInterval(() => {

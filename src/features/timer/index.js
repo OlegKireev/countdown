@@ -3,7 +3,8 @@ import {  useDispatch, useSelector } from 'react-redux';
 import Countdown from './components/Countdown';
 import Controls from './components/Controls';
 import { selectIsExpired, selectSeconds } from './store/selectors';
-import { setSeconds } from './store/timerSlice';
+import { stepTimer } from './store/timerSlice';
+import SetTimeControls from './components/SetTimeControls';
 
 const Timer = () => {
 	const seconds = useSelector(selectSeconds);
@@ -20,7 +21,7 @@ const Timer = () => {
 			setIntervalId(null);
 		} else {
 			setIntervalId(setInterval(() => {
-				dispatch(setSeconds(-1));
+				dispatch(stepTimer());
 			}, 1000));
 		}
 	};
@@ -39,6 +40,7 @@ const Timer = () => {
 		<>
 			<Countdown seconds={seconds}/>
 			<Controls onTimerClick={onTimerClick} />
+			<SetTimeControls />
 		</>
 	);
 };
