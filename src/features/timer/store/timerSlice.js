@@ -10,11 +10,10 @@ export const timerSlice = createSlice({
 	initialState,
 	reducers: {
 		setSeconds: (state, action) => {
-			const newSeconds = state.seconds + action.payload;
 			return {
 				...state,
-				seconds: newSeconds,
-				isExpired: newSeconds <= 0,
+				seconds: action.payload,
+				isExpired: action.payload <= 0,
 			};
 		},
 	},
