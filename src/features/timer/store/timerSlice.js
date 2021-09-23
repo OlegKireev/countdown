@@ -27,10 +27,4 @@ export const timerSlice = createSlice({
 
 export const {setSeconds, stepTimer} = timerSlice.actions;
 
-// export const startTimer = () => dispatch => {
-// 	const interval = setInterval(() => {
-// 		dispatch(setSeconds(-1));
-// 	}, 1000);
-// };
-
 export default timerSlice.reducer;
