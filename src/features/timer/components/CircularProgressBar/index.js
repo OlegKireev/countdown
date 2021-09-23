@@ -18,6 +18,12 @@ const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percentage = 25}) 
 			width={sqSize}
 			height={sqSize}
 			viewBox={viewBox}>
+			<defs>
+				<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stopColor="#00bc9b" />
+					<stop offset="100%" stopColor="#5eaefd" />
+				</linearGradient>
+			</defs>
 			<circle
 				className={styles.circleBackground}
 				cx={sqSize / 2}

@@ -9,7 +9,7 @@
     }
 
     & .circleProgress {
-        stroke: red;
+        stroke: url(#gradient);
         stroke-linecap: round;
         stroke-linejoin: round;
     }
@@ -17,6 +17,6 @@
     & .circleText {
         font-size: 3em;
         font-weight: bold;
-        fill: red;
+        fill: url(#gradient);
     }
 }
