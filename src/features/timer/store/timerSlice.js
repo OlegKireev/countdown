@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+	settledSeconds: 0,
 	seconds: 5,
 	isExpired: false,
 };
@@ -12,14 +13,15 @@ export const timerSlice = createSlice({
 		setSeconds: (state, action) => {
 			return {
 				...state,
+				settledSeconds: action.payload,
 				seconds: action.payload,
-				isExpired: action.payload <= 0,
+				isExpired: false,
 			};
 		},
 		stepTimer: (state) => {
 			return {
 				seconds: state.seconds - 1,
-				isExpired: state.seconds  <= 1,
+				isExpired: state.seconds - 1  <= 0,
 			};
 		}
 	},
