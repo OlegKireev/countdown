@@ -1,35 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import {  useDispatch, useSelector } from 'react-redux';
-import Countdown from './components/Countdown';
-import Controls from './components/Controls';
 import { selectIsExpired, selectSeconds } from './store/selectors';
-import { stepTimer } from './store/timerSlice';
+import { setIsWorking, stepTimer } from './store/timerSlice';
 import SetTimeControls from './components/SetTimeControls';
+import Controls from './components/Controls';
+import Countdown from './components/Countdown';
 
 const Timer = () => {
 	const seconds = useSelector(selectSeconds);
 	const isExpired = useSelector(selectIsExpired);
-
 	const dispatch = useDispatch();
+
 	const [intervalId, setIntervalId] = useState(null);
 
-	const isCountdowning = intervalId && !isExpired;
+	const pauseTimer = () => {
+		clearInterval(intervalId);
+		dispatch(setIsWorking(false));
+		setIntervalId(null);
+	};
+
+	const startTimer = () => {
+		dispatch(setIsWorking(true));
+		setIntervalId(setInterval(() => {
+			dispatch(stepTimer());
+		}, 1000));
+	};
 
 	const onTimerClick = () => {
-		if (isCountdowning) {
-			clearInterval(intervalId);
-			setIntervalId(null);
+		if (intervalId && !isExpired) {
+			pauseTimer();
 		} else {
-			setIntervalId(setInterval(() => {
-				dispatch(stepTimer());
-			}, 1000));
+			startTimer();
 		}
 	};
 
-	if (isExpired) {
-		console.log('Ring-ring');
-		clearInterval(intervalId);
-	}
+	useEffect(() => {
+		if (intervalId && isExpired) {
+			console.log('Ring-ring');
+			pauseTimer();
+		}
+	}, [intervalId, isExpired]);
+
 
 	/* componentWillUnmout simulation */
 	useEffect(() => {
