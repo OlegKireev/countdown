@@ -11,6 +11,19 @@ $app-color: $color-white;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.15s ease;
+
+    &.active {
+        background-color: $color-green;
+    }
+
+    &.pause {
+        background-color: $color-gray;
+    }
+
+    &.stop {
+        background-color: $color-red;
+    }
 
     &Container {
         width: 320px;
