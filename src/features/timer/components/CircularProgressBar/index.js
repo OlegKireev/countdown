@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CircularProgressBar.module.scss';
 
-const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percentage = 25}) => {
+const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percentage = 25, value = 0}) => {
 	// SVG centers the stroke width on the radius, subtract out so circle fits in square
 	const radius = (sqSize - strokeWidth) / 2;
 	// Enclose cicle in a circumscribing square
@@ -48,7 +48,7 @@ const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percentage = 25}) 
 				y="50%"
 				dy=".3em"
 				textAnchor="middle">
-				{`${percentage}%`}
+				{value < 10 ? `0${value}` : value}
 			</text>
 		</svg>
 	);
@@ -58,6 +58,7 @@ CircularProgressBar.propTypes = {
 	sqSize: PropTypes.number,
 	percentage: PropTypes.number,
 	strokeWidth: PropTypes.number,
+	value: PropTypes.number,
 };
 
 export default CircularProgressBar;
