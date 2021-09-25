@@ -1,0 +1,55 @@
+@import '../../theme/include.scss';
+
+$color-overflow: $color-black;
+
+.Swiper {
+  position: relative;
+  max-height: 150px;
+  width: 100px;
+  cursor:grabbing;
+
+  &::before {
+    z-index: 2;
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-image: linear-gradient(to bottom, $color-overflow 0%, transparent 100%);
+  }
+
+  &::after {
+    z-index: 2;
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-image: linear-gradient(to top, $color-overflow 0%, transparent 100%);
+  }
+}
+
+.Slide {
+  text-align: center;
+
+  &Active {
+    // background-color: red;
+    // color:red;
+  }
+  // height: 30px !important;
+}
+
+.target {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  height: 25px;
+  display: block;
+  border: 1px solid red;
+  pointer-events: none;
+}
