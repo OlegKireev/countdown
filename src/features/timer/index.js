@@ -5,6 +5,7 @@ import { setIsWorking, stepTimer } from './store/timerSlice';
 import SetTimeControls from './components/SetTimeControls';
 import Controls from './components/Controls';
 import Countdown from './components/Countdown';
+import { Howl } from 'howler';
 
 const Timer = () => {
 	const milliseconds = useSelector(selectMilliseconds);
@@ -17,6 +18,10 @@ const Timer = () => {
 
 	const [intervalId, setIntervalId] = useState(null);
 
+	const finishSound = new Howl({
+		src: ['./sounds/alarm.mp3', './sounds/alarm.wav']
+	});
+
 	const pauseTimer = () => {
 		clearInterval(intervalId);
 		dispatch(setIsWorking(false));
@@ -25,6 +30,7 @@ const Timer = () => {
 
 	const startTimer = () => {
 		dispatch(setIsWorking(true));
+		
 		setIntervalId(setInterval(() => {
 			dispatch(stepTimer());
 		}, 10));
@@ -41,6 +47,9 @@ const Timer = () => {
 	useEffect(() => {
 		if (intervalId && isExpired) {
 			console.log('Ring-ring');
+			
+			finishSound.play();
+
 			pauseTimer();
 		}
 	}, [intervalId, isExpired]);
