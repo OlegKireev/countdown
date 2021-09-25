@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './Countdown.module.scss';
+import CircularProgressBar from '../CircularProgressBar';
 
 const propTypes = {
 	seconds: PropTypes.number.isRequired,
+	percents: PropTypes.number.isRequired,
 };
 
-const Countdown = ({seconds}) => {
+const Countdown = ({seconds, percents}) => {
 	return (
 		<div className={cx(styles.Countdown)}>
-			<span>{seconds < 10 && 0}{seconds}</span>
+			<CircularProgressBar percents={percents} value={seconds}/>
 		</div>
 	);
 };
