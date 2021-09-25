@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CircularProgressBar.module.scss';
 
-const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percentage = 25, value = 0}) => {
+const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percents = 100, value = 0}) => {
 	// SVG centers the stroke width on the radius, subtract out so circle fits in square
 	const radius = (sqSize - strokeWidth) / 2;
 	// Enclose cicle in a circumscribing square
 	const viewBox = `0 0 ${sqSize} ${sqSize}`;
 	// Arc length at 100% coverage is the circle circumference
 	const dashArray = radius * Math.PI * 2;
-	// Scale 100% coverage overlay with the actual percent
-	const dashOffset = dashArray - dashArray * percentage / 100;
+	// Scale 100% coverage overlay with the actual percents
+	const dashOffset = dashArray - dashArray * percents / 100;
 
 	return (
 		<svg
@@ -56,7 +56,7 @@ const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percentage = 25, v
 
 CircularProgressBar.propTypes = {
 	sqSize: PropTypes.number,
-	percentage: PropTypes.number,
+	percents: PropTypes.number,
 	strokeWidth: PropTypes.number,
 	value: PropTypes.number,
 };
