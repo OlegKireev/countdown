@@ -11,7 +11,8 @@ const Timer = () => {
 	const settledMilliseconds = useSelector(selectSettledMilliseconds);
 	const isExpired = useSelector(selectIsExpired);
 	const dispatch = useDispatch();
-
+	
+	const seconds = Math.ceil(milliseconds / 1000);
 	const percents = milliseconds/settledMilliseconds * 100;
 
 	const [intervalId, setIntervalId] = useState(null);
@@ -50,9 +51,10 @@ const Timer = () => {
 		return () => clearInterval(intervalId);
 	}, []);
 
+
 	return (
 		<>
-			<Countdown milliseconds={milliseconds} percents={percents}/>
+			<Countdown seconds={seconds} percents={percents}/>
 			<Controls onTimerClick={onTimerClick} />
 			<SetTimeControls />
 		</>

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	settledMilliSeconds: 5000,
+	settledMilliseconds: 5000,
 	milliseconds: 5000,
 	isExpired: false,
 	isWorking: false,
@@ -14,7 +14,7 @@ export const timerSlice = createSlice({
 		setMilliseconds: (state, action) => {
 			return {
 				...state,
-				settledMilliSeconds: action.payload,
+				settledMilliseconds: action.payload,
 				milliseconds: action.payload,
 				isExpired: false,
 			};

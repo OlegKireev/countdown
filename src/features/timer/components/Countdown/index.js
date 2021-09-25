@@ -5,14 +5,14 @@ import styles from './Countdown.module.scss';
 import CircularProgressBar from '../CircularProgressBar';
 
 const propTypes = {
-	milliseconds: PropTypes.number.isRequired,
+	seconds: PropTypes.number.isRequired,
 	percents: PropTypes.number.isRequired,
 };
 
-const Countdown = ({milliseconds, percents}) => {
+const Countdown = ({seconds, percents}) => {
 	return (
 		<div className={cx(styles.Countdown)}>
-			<CircularProgressBar percents={percents} value={milliseconds}/>
+			<CircularProgressBar percents={percents} value={seconds}/>
 		</div>
 	);
 };
