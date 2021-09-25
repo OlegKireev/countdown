@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	settledSeconds: 5,
-	seconds: 5,
+	settledMilliSeconds: 5000,
+	milliseconds: 5000,
 	isExpired: false,
 	isWorking: false,
 };
@@ -11,19 +11,19 @@ export const timerSlice = createSlice({
 	name: 'timer',
 	initialState,
 	reducers: {
-		setSeconds: (state, action) => {
+		setMilliseconds: (state, action) => {
 			return {
 				...state,
-				settledSeconds: action.payload,
-				seconds: action.payload,
+				settledMilliSeconds: action.payload,
+				milliseconds: action.payload,
 				isExpired: false,
 			};
 		},
 		stepTimer: (state) => {
 			return {
 				...state,
-				seconds: state.seconds - 1,
-				isExpired: state.seconds - 1  <= 0,
+				milliseconds: state.milliseconds - 10,
+				isExpired: state.milliseconds - 10  <= 0,
 			};
 		},
 		setIsWorking: (state, action) => {
@@ -35,6 +35,6 @@ export const timerSlice = createSlice({
 	},
 });
 
-export const {setSeconds, stepTimer, setIsWorking} = timerSlice.actions;
+export const {setMilliseconds, stepTimer, setIsWorking} = timerSlice.actions;
 
 export default timerSlice.reducer;

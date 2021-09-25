@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import {  useDispatch, useSelector } from 'react-redux';
-import { selectIsExpired, selectSeconds, selectSettledSeconds } from './store/selectors';
+import { selectIsExpired, selectMilliseconds, selectSettledMilliseconds } from './store/selectors';
 import { setIsWorking, stepTimer } from './store/timerSlice';
 import SetTimeControls from './components/SetTimeControls';
 import Controls from './components/Controls';
 import Countdown from './components/Countdown';
 
 const Timer = () => {
-	const seconds = useSelector(selectSeconds);
-	const settledSeconds = useSelector(selectSettledSeconds);
+	const milliseconds = useSelector(selectMilliseconds);
+	const settledMilliseconds = useSelector(selectSettledMilliseconds);
 	const isExpired = useSelector(selectIsExpired);
 	const dispatch = useDispatch();
 
-	const percents = seconds/settledSeconds * 100;
+	const percents = milliseconds/settledMilliseconds * 100;
 
 	const [intervalId, setIntervalId] = useState(null);
 
@@ -26,7 +26,7 @@ const Timer = () => {
 		dispatch(setIsWorking(true));
 		setIntervalId(setInterval(() => {
 			dispatch(stepTimer());
-		}, 1000));
+		}, 10));
 	};
 
 	const onTimerClick = () => {
@@ -52,7 +52,7 @@ const Timer = () => {
 
 	return (
 		<>
-			<Countdown seconds={seconds} percents={percents}/>
+			<Countdown milliseconds={milliseconds} percents={percents}/>
 			<Controls onTimerClick={onTimerClick} />
 			<SetTimeControls />
 		</>
