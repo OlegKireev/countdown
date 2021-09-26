@@ -1,6 +1,7 @@
 @import '../../theme/include.scss';
 
 $color-overflow: $color-black;
+$color-target: $color-blue;
 
 .Swiper {
   position: relative;
@@ -50,6 +51,6 @@ $color-overflow: $color-black;
   transform: translateY(-50%);
   height: 25px;
   display: block;
-  border: 1px solid red;
+  border-bottom: 1px solid $color-target;
   pointer-events: none;
 }

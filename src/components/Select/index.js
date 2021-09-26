@@ -21,7 +21,7 @@ const Select = () => {
 			freeModeMomentumRatio={0.75}
 			// slideActiveClass={styles.SlideActive}
 			onSlideChange={(swiper) => console.log(swiper.realIndex)}
-			onSwiper={(swiper) => console.log(swiper)}
+			// onSwiper={(swiper) => console.log(swiper)}
 		>
 			<div className={styles.target}></div>
 			{seconds.map((second) => <SwiperSlide className={styles.Slide} key={second}>{second < 10 ? `0${second}` : second}</SwiperSlide>)}
