@@ -19,8 +19,7 @@ const Select = ({items, onChange}) => {
 			freeModeSticky
 			freeModeMomentumBounceRatio={5}
 			// slideActiveClass={styles.SlideActive}
-			onSlideChangeTransitionEnd={(swiper) => onChange(swiper.realIndex)}
-			// onSlideChange={(swiper) => onChange(swiper.realIndex)}
+			onSlideChange={(swiper) => setTimeout(() => onChange(swiper.realIndex), 1000)}
 		>
 			<div className={styles.target}></div>
 			{items.map((second) => <SwiperSlide className={styles.Slide} key={second}>{second < 10 ? `0${second}` : second}</SwiperSlide>)}
