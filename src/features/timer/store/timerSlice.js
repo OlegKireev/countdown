@@ -19,11 +19,18 @@ export const timerSlice = createSlice({
 				isExpired: false,
 			};
 		},
-		stepTimer: (state) => {
+		stepTimer: (state, action) => {
+			if (action.payload) {
+				return {
+					...state,
+					milliseconds: state.settledMilliseconds - action.payload,
+					isExpired: state.milliseconds - 100 <= 0,
+				};
+			}
 			return {
 				...state,
-				milliseconds: state.milliseconds - 10,
-				isExpired: state.milliseconds - 10  <= 0,
+				milliseconds: state.milliseconds - 100,
+				isExpired: state.milliseconds - 100  <= 0,
 			};
 		},
 		setIsWorking: (state, action) => {
