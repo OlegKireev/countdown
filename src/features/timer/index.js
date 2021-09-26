@@ -22,18 +22,25 @@ const Timer = () => {
 		src: ['./sounds/alarm.mp3', './sounds/alarm.wav']
 	});
 
+	
 	const pauseTimer = () => {
 		clearInterval(intervalId);
 		dispatch(setIsWorking(false));
 		setIntervalId(null);
 	};
 
+
 	const startTimer = () => {
+		let start = milliseconds === settledMilliseconds
+			? Date.now()
+			: Date.now() - settledMilliseconds + milliseconds;
+
 		dispatch(setIsWorking(true));
-		
+			
 		setIntervalId(setInterval(() => {
-			dispatch(stepTimer());
-		}, 10));
+			const delta = Date.now() - start;
+			dispatch(stepTimer(delta));
+		}, 100));
 	};
 
 	const onTimerClick = () => {
@@ -49,7 +56,6 @@ const Timer = () => {
 			console.log('Ring-ring');
 			
 			finishSound.play();
-
 			pauseTimer();
 		}
 	}, [intervalId, isExpired]);
