@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	settledMilliseconds: 5000,
-	milliseconds: 5000,
+	settledMilliseconds: 0,
+	milliseconds: 0,
 	isExpired: false,
 	isWorking: false,
 };

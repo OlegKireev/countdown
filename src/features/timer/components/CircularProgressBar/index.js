@@ -10,7 +10,8 @@ const CircularProgressBar = ({sqSize = 200, strokeWidth = 10, percents = 100, va
 	// Arc length at 100% coverage is the circle circumference
 	const dashArray = radius * Math.PI * 2;
 	// Scale 100% coverage overlay with the actual percents
-	const dashOffset = dashArray + dashArray * percents / 100;
+	const percentage = isNaN(percents) ? 100 : percents;
+	const dashOffset = dashArray + dashArray * percentage / 100;
 
 	return (
 		<svg
