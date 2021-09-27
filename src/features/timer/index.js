@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {  useDispatch, useSelector } from 'react-redux';
-import { selectIsExpired, selectMilliseconds, selectSettledMilliseconds } from './store/selectors';
+import { selectIsExpired, selectMilliseconds, selectSettledMilliseconds, selectIsWorking } from './store/selectors';
 import { setIsWorking, stepTimer } from './store/timerSlice';
 import SetTimeControls from './components/SetTimeControls';
 import Controls from './components/Controls';
@@ -11,6 +11,7 @@ const Timer = () => {
 	const milliseconds = useSelector(selectMilliseconds);
 	const settledMilliseconds = useSelector(selectSettledMilliseconds);
 	const isExpired = useSelector(selectIsExpired);
+	const isWorking = useSelector(selectIsWorking);
 	const dispatch = useDispatch();
 	
 	const seconds = Math.ceil(milliseconds / 1000);
@@ -66,12 +67,14 @@ const Timer = () => {
 		return () => clearInterval(intervalId);
 	}, []);
 
+	const setTimeControlsComponent = useMemo(() => <SetTimeControls isWorking={isWorking}/>, [isWorking]);
+	const controlsComponent = useMemo(() => <Controls onTimerClick={onTimerClick} />, [onTimerClick]);
 
 	return (
 		<>
 			<Countdown seconds={seconds} percents={percents}/>
-			<Controls onTimerClick={onTimerClick} />
-			<SetTimeControls />
+			{controlsComponent}
+			{setTimeControlsComponent}
 		</>
 	);
 };
